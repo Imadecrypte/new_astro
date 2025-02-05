@@ -2,9 +2,10 @@
 import Header from '../components/Header.astro';
 import '../styles/global.css';
 import Footer from '../components/Footer.astro';
+import { getCollection } from "astro:content";
 import BlogPost from '../components/BlogPost.astro';
 
-const allPosts = Object.values(import.meta.glob('./posts/*.md', { eager: true }));
+const allPosts = await getCollection("blog");
 const pageTitle = "Mon blog d’apprentissage Astro";
 ---
 
@@ -22,7 +23,7 @@ const pageTitle = "Mon blog d’apprentissage Astro";
   <h1>{pageTitle}</h1>
   <p>Voici où je vais publier mon parcours d'apprentissage d'Astro.</p>
     <ul>
-      {allPosts.map((post: any) => <BlogPost url={post.url} title={post.frontmatter.title} />)}    </ul>
+      {allPosts.map((post: any) => <BlogPost url={`/posts/${post.id}/`} title={post.data.title} /> )} </ul>
     <Footer />
     <script>
       import "../scripts/menu.js";
