@@ -1,5 +1,7 @@
 # Astro Starter Kit: Minimal
 
+Lien vers le github : https://github.com/Imadecrypte/new_astro
+
 ```sh
 npm create astro@latest -- --template minimal
 ```
